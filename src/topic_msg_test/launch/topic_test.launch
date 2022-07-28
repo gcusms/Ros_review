@@ -1,0 +1,4 @@
+<launch>
+ <node pkg="topic_msg_test" type="msg_lisener" name="lisener_self" output="screen" />
+ <node pkg="topic_msg_test" type="msg_talker"  name="talker_self" output="screen" />
+</launch>

@@ -227,3 +227,63 @@ int main(int argc, char *argv[])
 ros 信息通信方式都是大同小异，学会了一种，其他的只是有些逻辑和操作上的区别，原理了解之后即可以。
 
 ---
+
+## Launch 文件
+
+在机器人操作系统中，使用roslaunch 会更加方便管理 ros 节点
+使用roslaunch 命令集合 launch 文件启动管理节点，并且在后续教程中，也多次使用到了 launch 文件。
+概念
+>launch 文件是一个 XML 格式的文件，可以启动本地和远程的多个节点，还可以在参数服务器中设置参数。
+
+作用
+>简化节点的配置与启动，提高ROS程序的启动效率。
+
+
+- 新建launch文件
+在功能包下添加 launch目录, 目录下新建 xxxx.launch 文件，编辑 launch 文件
+
+~~~cpp
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node"     name="myTurtle" output="screen" />
+    <node pkg="turtlesim" type="turtle_teleop_key"  name="myTurtleContro" output="screen" />
+</launch>
+~~~
+
+然后打开终端调用即可
+>roslaunch 包名 xxx.launch
+
+如果之前 msg 运行没有问题的话可以将 launch 稍作一下更改就可以运行自己编写好的 node了，其实还是挺方便的
+
+
+---
+
+### :whale:再写写相关操作吧:whale:
+
+rosnode 是用于获取节点信息的命令
+
+~~~cpp
+rosnode ping    测试到节点的连接状态
+rosnode list    列出活动节点
+rosnode info    打印节点信息
+rosnode machine    列出指定设备上节点
+rosnode kill    杀死某个节点
+rosnode cleanup    清除不可连接的节点
+Copy
+rosnode ping
+~~~
+测试到节点的连接状态
+rosnode list
+
+列出活动节点
+rosnode info
+
+打印节点信息
+rosnode machine
+
+列出指定设备上的节点
+rosnode kill
+
+杀死某个节点
+rosnode cleanup
+
+清除无用节点，启动乌龟节点，然后 ctrl + c 关闭，该节点并没被彻底清除，可以使用 cleanup 清除节点
